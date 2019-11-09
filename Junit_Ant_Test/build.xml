@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="junit_ant_test" default="compile" basedir=".">
+	<property name="src" value="src/java"/>
+	<property name="class" value="class"/>
+	<property name="junit" value="src/test"/>
+	<property name="lib" value="lib"/>
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement path="${class}"/>
+	</path>
+	<target name="init">
+		<mkdir dir="${class}"/>
+	</target>
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
+		<javac srcdir="${junit}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
+	</target>
+</project>

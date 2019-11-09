@@ -30,3 +30,20 @@
     - 运行过程中首先运行```init```指令生成```class```文件夹，其后编译```java```文件到该文件夹下后运行，最后调用```clean```操作清楚文件夹，其输出结果如下图所示：
     ![images](https://github.com/Simon-Hwang/intermediate_training/blob/master/images/ant_run.png)
 4. **Junit**
+    - ```Junit```工具是用于测试代码的正确性，通过断言如```AssertEquals```函数来判断预测结果与实际输出结果是否相同。关于```Junit```的```java```文件需要导入以下包并注意其中一个需要添加```static```属性
+    ```java
+    import static org.junit.Assert.*;
+    import org.junit.Test;
+    ```
+    - 其中在调用断言的函数前加入标记```@Test```且函数名必须以```test```开头如```testHello```。其中调整```Helloworld.java```中的函数添加返回字符串```str```并在```HelloworldTest.java```中调用断言```AssertEquals(eval, act)```判断实际返回值```act```是否与预估值```eval```相同，具体代码如下图所示：
+    ![images](https://github.com/Simon-Hwang/intermediate_training/blob/master/images/junit_code.png)
+    - 在调用执行之前需要下载```junit-4.10.jar```包并置于```java```文件目录下，其后分别执行如下指令```
+javac -classpath .:junit-4.10.jar HelloWorldTest.java```以及
+```java -classpath .:junit-4.10.jar -ea org.junit.runner.JUnitCore HelloWorldTest```。
+    - 当断言正确时，输出结果如下图所示，其中显示```OK```
+    ![images](https://github.com/Simon-Hwang/intermediate_training/blob/master/images/junit_succ.png)
+    - 不正确时，输出结果如下图所示，其中显示```FAILURES!!!```
+    ![images](https://github.com/Simon-Hwang/intermediate_training/blob/master/images/junit_fail.png)
+    - 很明显的，直接使用命令行运行```junit```显得较为负责，此时可以使用```eclipse```工具运行代码，点击```Run```即可显示效果，其中正确与错误的输出结果分别如下两图，错误时还会输出相应的错误诊断如红圈所示。
+    ![images](https://github.com/Simon-Hwang/intermediate_training/blob/master/images/ecl_succ.png)
+    ![images](https://github.com/Simon-Hwang/intermediate_training/blob/master/images/ecl_fail.png)

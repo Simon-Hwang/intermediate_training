@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BugRunner" default="run" basedir=".">
+	<property name="src" value="src"/>
+	<property name="class" value="class"/>
+       <path id="classpath">
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement path="${class}"/>
+	</path>
+	<target name="init">
+		<mkdir dir="${class}"/>
+	</target>
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
+	</target>
+	<target name="run" depends="compile">
+		<java classname="BugRunner" classpathref="classpath" fork="true"/>	
+	</target>
+</project>

@@ -5,14 +5,14 @@ import javax.swing.*;
 
 public class Calculator{
 	private JFrame cal;
-	private JPanel panel_text, panel_button;
-	private JTextField text_res, text_his;
+	private JPanel panelText, panelButton;
+	private JTextField textRes, textHis;
 	private JButton clr;
-	private String history, cur_num;
+	private String history, curNum;
 	private String[] signal = new String[2];
 	private Double[] num = new Double[3];
-	private int num_index, signal_index;
-	private boolean start, point_status, signal_status;
+	private int numIndex, signalIndex;
+	private boolean start, pointStatus, signalStatus;
 	private Calculator() {
 		para_init();
 		setText();
@@ -20,9 +20,9 @@ public class Calculator{
 		setFrame();
 	}
 	private void para_init() {
-		start = point_status = signal_status = false;
-		signal_index = num_index = 0;
-		cur_num = "0";
+		start = pointStatus = signalStatus = false;
+		signalIndex = numIndex = 0;
+		curNum = "0";
 		history = "";
 	}
 	private void setFrame() {
@@ -30,20 +30,20 @@ public class Calculator{
 		cal.setLayout(new BorderLayout());
 		cal.setLocation(300,200);
 		cal.setSize(400,350);
-		cal.add(panel_text, BorderLayout.NORTH);
-		cal.add(panel_button, BorderLayout.CENTER);
+		cal.add(panelText, BorderLayout.NORTH);
+		cal.add(panelButton, BorderLayout.CENTER);
 		cal.add(clr, BorderLayout.SOUTH);
 		cal.setVisible(true);
 		cal.setResizable(false);
 		cal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	private void setPanel() {
-		panel_text = new JPanel();
-		panel_text.setLayout(new GridLayout(2, 1, 2,2));
-		panel_text.add(text_his);
-		panel_text.add(text_res);
-		panel_button = new JPanel();
-		panel_button.setLayout(new GridLayout(4, 4, 5, 5));
+		panelText = new JPanel();
+		panelText.setLayout(new GridLayout(2, 1, 2,2));
+		panelText.add(textHis);
+		panelText.add(textRes);
+		panelButton = new JPanel();
+		panelButton.setLayout(new GridLayout(4, 4, 5, 5));
 		addButton();
 	}
 	private void addButton() {
@@ -51,17 +51,17 @@ public class Calculator{
 		ActionListener command = new Command();
 		ActionListener sum = new Sum();
 		ActionListener clear = new Clear();
-		String[] button_name= {"7","8","9","+","4","5","6","-","1","2","3","*",".","0","=","/"};
-		for(int i = 0; i < button_name.length; ++i) {
-			JButton button = new JButton(button_name[i]);
-			if(button_name[i].equals("+") || button_name[i].equals("/") || button_name[i].equals("*") || button_name[i].equals("-")) {
+		String[] buttonName= {"7","8","9","+","4","5","6","-","1","2","3","*",".","0","=","/"};
+		for(int i = 0; i < buttonName.length; ++i) {
+			JButton button = new JButton(buttonName[i]);
+			if(buttonName[i].equals("+") || buttonName[i].equals("/") || buttonName[i].equals("*") || buttonName[i].equals("-")) {
 				button.addActionListener(command);
-			}else if(!button_name[i].equals("=")){
+			}else if(!buttonName[i].equals("=")){
 				button.addActionListener(insert);
 			}else {
 				button.addActionListener(sum);
 			}
-			panel_button.add(button);
+			panelButton.add(button);
 		}
 		clr = new JButton("Clear");
 		clr.addActionListener(clear);
@@ -69,24 +69,24 @@ public class Calculator{
 	private class Clear implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			para_init();
-			text_his.setText(history);
-			text_res.setText(cur_num);
+			textHis.setText(history);
+			textRes.setText(curNum);
 		}
 	}
 	private class Sum implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
-			if(signal_status) {
+			if(signalStatus) {
 				history = history.substring(0, history.length() - 1) + "=";
 			}else {
-				num[num_index] = Double.parseDouble(cur_num); 
-				num_index++;
-				history += cur_num + "=";
+				num[numIndex] = Double.parseDouble(curNum); 
+				numIndex++;
+				history += curNum + "=";
 			}
-			for(int i = num_index - 2; i >= 0; --i) {
+			for(int i = numIndex - 2; i >= 0; --i) {
 				num[i] = calculator(signal[i], num[i], num[i + 1]); 
 			}
-			text_his.setText(history);
-			text_res.setText(num[0].toString());
+			textHis.setText(history);
+			textRes.setText(num[0].toString());
 			para_init();
 		}
 	}
@@ -94,62 +94,62 @@ public class Calculator{
 		public void actionPerformed(ActionEvent event) {
 			String cmd = event.getActionCommand();
 			if(!start) {
-				text_his.setText(history);
-				text_res.setText(cur_num);
+				textHis.setText(history);
+				textRes.setText(curNum);
 				return;
 			}
-			if(signal_status) {
-				signal[signal_index - 1] = cmd;
+			if(signalStatus) {
+				signal[signalIndex - 1] = cmd;
 				history = history.substring(0, history.length() - 1) + cmd;
 			}else {
-				num[num_index] = Double.parseDouble(cur_num); 
-				num_index++;
-				if(num_index >= 2) {
-					if(signal_index == 2) {
+				num[numIndex] = Double.parseDouble(curNum); 
+				numIndex++;
+				if(numIndex >= 2) {
+					if(signalIndex == 2) {
 						num[1] = calculator(signal[1], num[1], num[2]);
-						num_index = 2;
-						signal_index = 1;
+						numIndex = 2;
+						signalIndex = 1;
 					}else {
 						if(signal[0].equals("*") || signal[0].equals("/")) {
-							signal_index = 0;
+							signalIndex = 0;
 							num[0] = calculator(signal[0], num[0], num[1]);
-							num_index = 1;
+							numIndex = 1;
 						}
 					}
 				}
-				signal[signal_index] = cmd;
-				signal_index++;
-				history += cur_num + cmd;
-				signal_status = true;
+				signal[signalIndex] = cmd;
+				signalIndex++;
+				history += curNum + cmd;
+				signalStatus = true;
 			}
-			text_his.setText(history);
+			textHis.setText(history);
 		}
 	}
 	private class Insert implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			String cmd = event.getActionCommand();
-			if(point_status && cmd.equals(".")) {
+			if(pointStatus && cmd.equals(".")) {
 				return;
 			}
-			if(!start || signal_status) {
+			if(!start || signalStatus) {
 				if(!cmd.equals(".")) {
 					start = true;
-					signal_status = false;
-					cur_num = cmd;
+					signalStatus = false;
+					curNum = cmd;
 				}
 			}else {
-				if(cmd.equals(".") && !point_status) {
-					point_status = true;
-					cur_num += cmd;
+				if(cmd.equals(".") && !pointStatus) {
+					pointStatus = true;
+					curNum += cmd;
 				}else {
-					if(cur_num.equals("0")) {
-						cur_num = cmd;
+					if(curNum.equals("0")) {
+						curNum = cmd;
 					}else {
-						cur_num += cmd;
+						curNum += cmd;
 					}
 				}
 			}
-			text_res.setText(cur_num);
+			textRes.setText(curNum);
 		}
 	}
 	private Double calculator(String signal, Double value1, Double value2) {
@@ -169,17 +169,17 @@ public class Calculator{
 		return res;
 	}
 	private void setText() {
-		text_res = new JTextField();
-		text_res.setHorizontalAlignment(JTextField.RIGHT);
-		text_res.setEditable(false);
-		text_res.setText(cur_num);
-		text_res.setFont(new Font("黑体", Font.PLAIN, 20));
+		textRes = new JTextField();
+		textRes.setHorizontalAlignment(JTextField.RIGHT);
+		textRes.setEditable(false);
+		textRes.setText(curNum);
+		textRes.setFont(new Font("黑体", Font.PLAIN, 20));
 		
-		text_his = new JTextField();
-		text_his.setHorizontalAlignment(JTextField.RIGHT);
-		text_his.setEditable(false);
-		text_his.setText(history);
-		text_his.setFont(new Font("宋体", Font.PLAIN, 10));
+		textHis = new JTextField();
+		textHis.setHorizontalAlignment(JTextField.RIGHT);
+		textHis.setEditable(false);
+		textHis.setText(history);
+		textHis.setFont(new Font("宋体", Font.PLAIN, 10));
 	}
 	public static void main(String[] args) {
 		new Calculator();

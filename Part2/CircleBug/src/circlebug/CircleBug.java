@@ -16,29 +16,34 @@
  * @author Chris Nevison
  * @author Barbara Cloud Wells
  */
-
-package DancingBug;
+package circlebug;
 
 import info.gridworld.actor.Bug;
 
-public class DancingBug extends Bug{
+public class CircleBug extends Bug {
+	private int sideLength;
 	private int steps;
-	private int arr[];
-	public DancingBug(int array[]) {
-		arr = array.clone(); //initilize the array
+	public CircleBug(int radius) {
+		sideLength = radius;
 		steps = 0;
 	}
 	public void act() {
-		turnDirection(arr[steps]);
-		if(canMove()) {
+		if(steps >= 0 && steps < sideLength && canMove()) { // less, not no more than -> because step is started by zero
 			move();
-			steps++;
-			steps %= arr.length; // process as a circle
-		}
-	}
-	private void turnDirection(int count) {
-		for(int i = 0; i < count; ++i) {
+			++steps;
+		}else if(steps < 0) {
 			turn();
+			++steps;
 		}
+		else{
+			steps = -1;
+			turn(); // if turn one, it will be a circle and twice be a square
+		}
+		/*
+		 else{
+		 	turn();
+		 	steps = 0;
+		 }
+		 */
 	}
 }

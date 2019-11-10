@@ -16,20 +16,20 @@
  * @author Chris Nevison
  * @author Barbara Cloud Wells
  */
-package ZBug;
+
+package circlebug;
 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.Location;
 import java.util.Random;
 
-import CircleBug.CircleBug;
-
-public class ZBugRunner {
+public final class CircleBugRunner {
+	private CircleBugRunner(){}
 	public static void main(String args[]) {
 		Random random = new Random();
-		ZBug z = new ZBug(4);  // Z length
-		ActorWorld world = new ActorWorld(); // build the gridworld
-	    world.add(new Location(random.nextInt(10),random.nextInt(10)), z);
+		CircleBug circle = new CircleBug(random.nextInt(9) + 1); // produce a random interger number [1,9]
+		ActorWorld world = new ActorWorld();
+	    world.add(new Location(random.nextInt(10),random.nextInt(10)), circle);
 	    world.show();
 	}
 }

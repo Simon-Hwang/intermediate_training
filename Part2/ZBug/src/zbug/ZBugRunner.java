@@ -16,19 +16,21 @@
  * @author Chris Nevison
  * @author Barbara Cloud Wells
  */
-
-package SpiralBug;
+package zbug;
 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.Location;
 import java.util.Random;
 
-public class SpiralBugRunner {
+public final class ZBugRunner {
+	private ZBugRunner(){
+
+	}
 	public static void main(String args[]) {
-		Random random = new Random();//choose system time as time stamp
-		SpiralBug spiral = new SpiralBug(random.nextInt(3) + 1);// [1,3]
+		Random random = new Random();
+		ZBug z = new ZBug(4);  // Z length
 		ActorWorld world = new ActorWorld(); // build the gridworld
-	    world.add(new Location(random.nextInt(10),random.nextInt(10)), spiral);
+	    world.add(new Location(random.nextInt(10),random.nextInt(10)), z);
 	    world.show();
 	}
 }

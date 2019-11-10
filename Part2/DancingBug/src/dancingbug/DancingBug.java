@@ -16,41 +16,31 @@
  * @author Chris Nevison
  * @author Barbara Cloud Wells
  */
-package ZBug;
+
+package dancingbug;
 
 import info.gridworld.actor.Bug;
 
-public class ZBug extends Bug {
-	private int sideLength;
+public class DancingBug extends Bug{
 	private int steps;
-	private int times;
-	public ZBug(int zLength) {
-		sideLength = zLength;
+	private int arr[];
+	public DancingBug(int array[]) {
+		arr = array.clone(); //initilize the array
 		steps = 0;
-		times = 0; // the bug turing times
 	}
 	public void act() {
-		if(times > 2 || (!canMove() && steps < sideLength)) { //can not move but still attempts to move to form a 'Z' then stop
-			return;
-		}
-		if(steps < sideLength) {
+		turnDirection(arr[steps]);
+		if(canMove()) {
 			move();
-			++steps;
-		}else {
-			steps = 0;
-			turnDirection(); // turn right according to where the bug is 
-			times++;
+			steps++;
+			steps %= arr.length; // process as a circle
+		}else{
+			turn();//it may forwards to the wall
 		}
 	}
-	private void turnDirection() { // set the direction
-		if(times == 0) {
-			for(int i = 0; i < 3; ++i) {
-				turn();
-			}
-		}else if(times == 1) {
-			for(int i = 0; i < 5;++i) {
-				turn();
-			}
+	private void turnDirection(int count) {
+		for(int i = 0; i < count; ++i) {
+			turn();
 		}
 	}
 }

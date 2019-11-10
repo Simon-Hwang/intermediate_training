@@ -2,7 +2,7 @@
 <project name="CircleBug" default="run" basedir=".">
 	<property name="src" value="src"/>
 	<property name="class" value="class"/>
-	<property name="lib" value="value"/>
+	<property name="lib" value="lib"/>
 	<path id="classpath">
 		<fileset dir="${lib}">
 			<include name="**/*.jar"/>
@@ -16,6 +16,6 @@
 		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
 	</target>
 	<target name="run" depends="compile">
-		<java classname="CircleBug.CircleBugRunner" claspathref="classpath" fork="true"/>
+		<java classname="circlebug.CircleBugRunner" classpathref="classpath" fork="true"/>
 	</target>
 </project>

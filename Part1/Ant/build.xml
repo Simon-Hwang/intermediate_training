@@ -20,7 +20,4 @@
 			</classpath>
 		</java>
 	</target>
-	<target name="clean" depends="run">
-		<delete dir="${class}"/>
-	</target>
 </project>

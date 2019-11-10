@@ -1,5 +1,4 @@
-package GridWorld.Calculator;
-
+package test;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -12,9 +11,9 @@ public class Calculator{
 	private String history, cur_num;
 	private String[] signal = new String[2];
 	private Double[] num = new Double[3];
-	private int num_index = 0, signal_index = 0;
+	private int num_index, signal_index;
 	private boolean start, point_status, signal_status;
-	public Calculator() {
+	private Calculator() {
 		para_init();
 		setText();
 		setPanel();
@@ -91,7 +90,7 @@ public class Calculator{
 			para_init();
 		}
 	}
-	private class Command implements ActionListener{
+	private class Command implements ActionListener{ //add ActionListener to specifify button
 		public void actionPerformed(ActionEvent event) {
 			String cmd = event.getActionCommand();
 			if(!start) {
@@ -155,14 +154,18 @@ public class Calculator{
 	}
 	private Double calculator(String signal, Double value1, Double value2) {
 		Double res = value1;
-		if(signal.equals("+"))
+		if(signal.equals("+")){
 			res += value2;
-		else if(signal.equals("-"))
+		}
+		else if(signal.equals("-")){
 			res -= value2;
-		else if(signal.equals("*"))
+		}	
+		else if(signal.equals("*")){
 			res *= value2;
-		else
+		}
+		else{
 			res /= value2;
+		}
 		return res;
 	}
 	private void setText() {
@@ -179,6 +182,6 @@ public class Calculator{
 		text_his.setFont(new Font("宋体", Font.PLAIN, 10));
 	}
 	public static void main(String[] args) {
-		Calculator cal = new Calculator();
+		new Calculator();
 	}
 }

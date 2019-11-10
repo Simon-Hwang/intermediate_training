@@ -3,7 +3,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Calculator{
+final public class Calculator{ //set final
+	/*Initlize the parameters
+	*seeting the panel sample like a normal calculator
+	*store some variable to deal with the processor
+	*/
 	private JFrame cal;
 	private JPanel panelText, panelButton;
 	private JTextField textRes, textHis;
@@ -13,19 +17,22 @@ public class Calculator{
 	private Double[] num = new Double[3];
 	private int numIndex, signalIndex;
 	private boolean start, pointStatus, signalStatus;
-	private Calculator() {
-		para_init();
+	private Calculator() { // make a constructor, cause there is main func in its body, it can be private 
+		paraInit();
 		setText();
 		setPanel();
 		setFrame();
 	}
-	private void para_init() {
-		start = pointStatus = signalStatus = false;
-		signalIndex = numIndex = 0;
+	private void paraInit() { // the init func should be reused
+		start = false;
+		pointStatus = false;
+		signalStatus = false;
+		signalIndex = 0;
+		numIndex = 0;
 		curNum = "0";
 		history = "";
 	}
-	private void setFrame() {
+	private void setFrame() { //set Frame sample as it like to be
 		cal = new JFrame("Simple Calculator");
 		cal.setLayout(new BorderLayout());
 		cal.setLocation(300,200);
@@ -37,7 +44,7 @@ public class Calculator{
 		cal.setResizable(false);
 		cal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	private void setPanel() {
+	private void setPanel() {//deal with the panel
 		panelText = new JPanel();
 		panelText.setLayout(new GridLayout(2, 1, 2,2));
 		panelText.add(textHis);
@@ -46,7 +53,7 @@ public class Calculator{
 		panelButton.setLayout(new GridLayout(4, 4, 5, 5));
 		addButton();
 	}
-	private void addButton() {
+	private void addButton() { // add Button to the panel
 		ActionListener insert = new Insert();
 		ActionListener command = new Command();
 		ActionListener sum = new Sum();
@@ -66,9 +73,9 @@ public class Calculator{
 		clr = new JButton("Clear");
 		clr.addActionListener(clear);
 	}
-	private class Clear implements ActionListener{
+	private class Clear implements ActionListener{ // add Listener
 		public void actionPerformed(ActionEvent event) {
-			para_init();
+			paraInit();
 			textHis.setText(history);
 			textRes.setText(curNum);
 		}
@@ -87,7 +94,7 @@ public class Calculator{
 			}
 			textHis.setText(history);
 			textRes.setText(num[0].toString());
-			para_init();
+			paraInit();
 		}
 	}
 	private class Command implements ActionListener{ //add ActionListener to specifify button

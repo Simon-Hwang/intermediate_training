@@ -2,6 +2,7 @@
 <project name="BugRunner" default="run" basedir=".">
 	<property name="src" value="src"/>
 	<property name="class" value="class"/>
+	<property name="lib" value="lib"/>
        <path id="classpath">
 		<fileset dir="${lib}">
 			<include name="**/*.jar"/>

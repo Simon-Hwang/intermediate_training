@@ -36,7 +36,7 @@
     | 360 |  North |
 
 2.  Move a bug to a different location using the moveTo method. In which directions can you move it? How far can you move it? What happens if you try to move the bug outside the grid?
-    -  Can by moved to any valid grid if there was empty. If moving a bug to a location outside of the grid, some errors like```IllegalArgumentException```would be thrown out.
+    -  Can be moved to any valid grid if there was empty. If moving a bug to a location outside of the grid, some errors like```IllegalArgumentException```would be thrown out.
 3.  Change the color of a bug, a flower, and a rock. Which method did you use?
     -  ```void.setColor(java.awt.Color())```;
 4.  Move a rock on top of a bug and then move the rock again. What happened to the bug?

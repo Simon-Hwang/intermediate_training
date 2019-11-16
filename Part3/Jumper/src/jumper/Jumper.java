@@ -18,7 +18,9 @@ package jumper;
 
 import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
-
+import info.gridworld.actor.Actor;
+import info.gridworld.actor.Bug;
+import info.gridworld.actor.Flower;
 import java.awt.Color;
 
 /**
@@ -26,7 +28,7 @@ import java.awt.Color;
  * it moves. <br />
  * The implementation of this class is testable on the AP CS A and AB exams.
  */
-public class Jumper extends Actor
+public class Jumper extends Bug
 {
     /**
      * Constructs a red bug.
@@ -46,45 +48,27 @@ public class Jumper extends Actor
     }
 
     /**
-     * Moves if it can move, turns otherwise.
-     */
-    public void act()
-    {
-        if (canMove())
-            move();
-        else
-            turn();
-    }
-
-    /**
-     * Turns the bug 45 degrees to the right without changing its location.
-     */
-    public void turn()
-    {
-        setDirection(getDirection() + Location.HALF_RIGHT);
-    }
-
-    /**
      * Moves the bug forward, putting a flower into the location it previously
      * occupied.
      */
     public void move()
     {
         Grid<Actor> gr = getGrid();
-        if (gr == null)
+        if (gr == null){
             return;
+	}
         Location loc = getLocation();
         Location next = loc.getAdjacentLocation(getDirection());
-		Location nextNext = loc.getAdjacentLocation(next);
-		if(gr.isValid(nextNext)){ // if can, move two cells
-			moveTo(nextNext);
-		}
-		else{ // if can't move just one cell
-			if (gr.isValid(next))
-				moveTo(next);
-			else
-				removeSelfFromGrid();
-		}
+	next = next.getAdjacentLocation(getDirection());
+	if (gr.isValid(next)){
+		moveTo(next);
+	}
+	else{
+		boolean res = moveOne();
+		if(!res){
+			removeSelfFromGrid();
+		}	
+	}
     }
 
     /**
@@ -95,16 +79,49 @@ public class Jumper extends Actor
     public boolean canMove()
     {
         Grid<Actor> gr = getGrid();
-        if (gr == null)
+        if (gr == null){
             return false;
+	}
         Location loc = getLocation();
         Location next = loc.getAdjacentLocation(getDirection());
-		Location nextNext = loc.getAdjacentLocation(next);
-        if (!gr.isValid(next) && !gr.isValid(nextNext))
-            return false;
+	next = next.getAdjacentLocation(getDirection());
+        if (!gr.isValid(next)){
+            return canMoveOne();
+	}
         Actor neighbor = gr.get(next);
-		Actor neighborNext = gr.get(nextNext);
-        return (neighbor == null) || (neighbor instanceof Flower) || (neighborNext == null) || (neighborNext instanceof Flower); //can jump if and only there are empty or Flower 
+        return (neighbor == null) || (neighbor instanceof Flower); //can jump if and only there are empty or Flower 
+        // ok to move into empty location or onto flower
+        // not ok to move onto any other actor
+    }
+    public boolean moveOne()
+    {
+        Grid<Actor> gr = getGrid();
+        Location loc = getLocation();
+        Location next = loc.getAdjacentLocation(getDirection());
+        if (gr.isValid(next)){
+            moveTo(next);
+	    return true;	
+	}
+        else{
+            return false;
+	}
+    }
+
+    /**
+     * Tests whether this bug can move forward into a location that is empty or
+     * contains a flower.
+     * @return true if this bug can move.
+     */
+    public boolean canMoveOne()
+    {
+        Grid<Actor> gr = getGrid();
+        Location loc = getLocation();
+        Location next = loc.getAdjacentLocation(getDirection());
+        if (!gr.isValid(next)){
+            return false;
+	}
+        Actor neighbor = gr.get(next);
+        return (neighbor == null) || (neighbor instanceof Flower);
         // ok to move into empty location or onto flower
         // not ok to move onto any other actor
     }

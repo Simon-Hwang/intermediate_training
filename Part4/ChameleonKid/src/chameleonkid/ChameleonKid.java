@@ -21,8 +21,9 @@ package chameleonkid;
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.Critter;
 import info.gridworld.grid.Location;
-
-import java.util.ArrayList;
+import info.gridworld.grid.Grid;
+import java.awt.Color;
+import java.util.List;
 
 public class ChameleonKid extends ChameleonCritter{
 	private static final double DARKENING_FACTOR = 0.05; //darkern coefficient
@@ -32,12 +33,28 @@ public class ChameleonKid extends ChameleonCritter{
 		for (Location loc : getLocationsInDirections(dirs)) //get actors
         {
             Actor a = getGrid().get(loc);
-            if (a != null)
+            if (a != null){
                 actors.add(a);
+		}
         }
         return actors;
 	}
-	
+	public List<Location> getLocationsInDirections(int[] directions)
+    {
+        List<Location> locs = new List<Location>();
+        Grid gr = getGrid();
+        Location loc = getLocation();
+    
+        for (int d : directions)
+        {
+            Location neighborLoc = loc.getAdjacentLocation(getDirection() + d);
+            if (gr.isValid(neighborLoc)){
+                locs.add(neighborLoc);
+	    }
+        }
+        return locs;
+    }    
+
 	public void processActors(ArrayList<Actor> actors)
     {
         int n = actors.size();
@@ -47,6 +64,7 @@ public class ChameleonKid extends ChameleonCritter{
 			int green = (int) (c.getGreen() * (1 - DARKENING_FACTOR));
 			int blue = (int) (c.getBlue() * (1 - DARKENING_FACTOR));
 			setColor(new Color(red, green, blue));
+			return;
 		}
         int r = (int) (Math.random() * n);
         Actor other = actors.get(r);

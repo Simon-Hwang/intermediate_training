@@ -27,13 +27,13 @@
     | --- | --- |
     | 0 | North |
     | 45 |  NorthEast|
-    | 90 |  East |
-    | 135 | SouthEast  |
-    | 180 |  South |
-    | 225 | SouthWest  |
-    | 270 | West  |
-    | 315 | NorthWest  |
-    | 360 |  North |
+    | 90 |  EAST  |
+    | 135 | SOUTHEAST   |
+    | 180 |  SOUTH  |
+    | 225 | SOUTHWEST   |
+    | 270 | WEST   |
+    | 315 | NORTHWEST   |
+    | 360 |  NORTH  |
 
 2.  Move a bug to a different location using the moveTo method. In which directions can you move it? How far can you move it? What happens if you try to move the bug outside the grid?
     -  Can be moved to any valid grid if there was empty. If moving a bug to a location outside of the grid, some errors would be thrown out.

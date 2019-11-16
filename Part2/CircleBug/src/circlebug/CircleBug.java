@@ -39,11 +39,5 @@ public class CircleBug extends Bug {
 			steps = -1;
 			turn(); // if turn one, it will be a circle and twice be a square
 		}
-		/*
-		 else{
-		 	turn();
-		 	steps = 0;
-		 }
-		 */
 	}
 }

@@ -1,4 +1,3 @@
-  
 /* 
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
@@ -13,11 +12,9 @@
  * GNU General Public License for more details.
  * 
  * @author Cay Horstmann
- * @author Chris Nevison
- * @author Barbara Cloud Wells
  */
 
-package dancingbug;
+package dancingbug;//package name
 
 import info.gridworld.actor.Bug;
 
@@ -30,7 +27,7 @@ public class DancingBug extends Bug{
 	}
 	public void act() {
 		turnDirection(arr[steps]);
-		if(canMove()) {
+		if(canMove()) { // if there are empty in front of the bug->move 
 			move();
 			steps++;
 			steps %= arr.length; // process as a circle
@@ -39,7 +36,7 @@ public class DancingBug extends Bug{
 		}
 	}
 	private void turnDirection(int count) {
-		for(int i = 0; i < count; ++i) {
+		for(int i = 0; i < count; ++i) { //dancing
 			turn();
 		}
 	}

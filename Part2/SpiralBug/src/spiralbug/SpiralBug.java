@@ -1,4 +1,3 @@
-  
 /* 
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
@@ -13,10 +12,8 @@
  * GNU General Public License for more details.
  * 
  * @author Cay Horstmann
- * @author Chris Nevison
- * @author Barbara Cloud Wells
  */
-package spiralbug;
+package spiralbug;// the package name
 
 import info.gridworld.actor.Bug;
 

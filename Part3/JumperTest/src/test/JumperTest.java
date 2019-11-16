@@ -13,19 +13,3 @@
  * 
  * @author Cay Horstmann
  */
-package spiralbug; // the package name
-
-import info.gridworld.actor.ActorWorld;
-import info.gridworld.grid.Location;
-import java.util.Random;
-
-public final class SpiralBugRunner {
-	private SpiralBugRunner(){} // constructor
-	public static void main(String args[]) {
-		Random random = new Random();//choose system time as time stamp
-		SpiralBug spiral = new SpiralBug(random.nextInt(3) + 1);// [1,3]
-		ActorWorld world = new ActorWorld(); // build the gridworld
-	    world.add(new Location(random.nextInt(10),random.nextInt(10)), spiral);
-	    world.show();
-	}
-}

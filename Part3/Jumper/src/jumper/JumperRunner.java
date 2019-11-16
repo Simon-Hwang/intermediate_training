@@ -13,24 +13,22 @@
  * 
  * @author Cay Horstmann
  */
-
-package dancingbug;//package name
-
+ 
+package jumper;
+ 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.Location;
 import java.util.Random;
 
-public final class DancingBugRunner {
-	private DancingBugRunner(){}
-	public static void main(String args[]) {
+public final class JumperRunner{
+	private JumperRunner(){}
+	public static void main(String[] args){
 		Random random = new Random();
-		int array[] = new int[random.nextInt(10) + 1]; // produce a array length to be [1, 10]
-		for(int i = 0; i < array.length; ++i) {
-			array[i] = random.nextInt(10); // assign to be [0, 10)
-		}
-		DancingBug dancing = new DancingBug(array); // build the gridworld
+		Jumper jumper1 = new Jumper(); // build the gridworld
+		Jumper jumper2 = new Jumper(); // build the gridworld
 		ActorWorld world = new ActorWorld();
-	    world.add(new Location(random.nextInt(10),random.nextInt(10)), dancing);
+	    world.add(new Location(random.nextInt(10),random.nextInt(10)), jumper1);
+		world.add(new Location(random.nextInt(10),random.nextInt(10)), jumper2);
 	    world.show();
 	}
 }

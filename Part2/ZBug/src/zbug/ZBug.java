@@ -1,4 +1,3 @@
-  
 /* 
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
@@ -13,10 +12,8 @@
  * GNU General Public License for more details.
  * 
  * @author Cay Horstmann
- * @author Chris Nevison
- * @author Barbara Cloud Wells
  */
-package zbug;
+package zbug; //package name
 
 import info.gridworld.actor.Bug;
 
@@ -44,7 +41,7 @@ public class ZBug extends Bug {
 	}
 	private void turnDirection() { // set the direction
 		if(times == 0) {
-			for(int i = 0; i < 3; ++i) {
+			for(int i = 0; i < 3; ++i) { // there are two situation -> means two options
 				turn();
 			}
 		}else if(times == 1) {

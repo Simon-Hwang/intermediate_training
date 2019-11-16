@@ -1,4 +1,3 @@
-  
 /* 
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
@@ -13,10 +12,8 @@
  * GNU General Public License for more details.
  * 
  * @author Cay Horstmann
- * @author Chris Nevison
- * @author Barbara Cloud Wells
  */
-package circlebug;
+package circlebug; //package name
 
 import info.gridworld.actor.Bug;
 
@@ -31,7 +28,7 @@ public class CircleBug extends Bug {
 		if(steps >= 0 && steps < sideLength && canMove()) { // less, not no more than -> because step is started by zero
 			move();
 			++steps;
-		}else if(steps < 0) {
+		}else if(steps < 0) { // turn twice to get the tright dirction
 			turn();
 			++steps;
 		}

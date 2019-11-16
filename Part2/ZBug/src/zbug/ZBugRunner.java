@@ -1,4 +1,3 @@
-  
 /* 
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
@@ -13,19 +12,15 @@
  * GNU General Public License for more details.
  * 
  * @author Cay Horstmann
- * @author Chris Nevison
- * @author Barbara Cloud Wells
  */
-package zbug;
+package zbug; //package name
 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.Location;
 import java.util.Random;
 
 public final class ZBugRunner {
-	private ZBugRunner(){
-
-	}
+	private ZBugRunner(){} // constructor
 	public static void main(String args[]) {
 		Random random = new Random();
 		ZBug z = new ZBug(4);  // Z length

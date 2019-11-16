@@ -1,4 +1,3 @@
-  
 /* 
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
@@ -13,18 +12,16 @@
  * GNU General Public License for more details.
  * 
  * @author Cay Horstmann
- * @author Chris Nevison
- * @author Barbara Cloud Wells
  */
 
-package circlebug;
+package circlebug;//package name
 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.Location;
 import java.util.Random;
 
 public final class CircleBugRunner {
-	private CircleBugRunner(){}
+	private CircleBugRunner(){} // constructor
 	public static void main(String args[]) {
 		Random random = new Random();
 		CircleBug circle = new CircleBug(random.nextInt(9) + 1); // produce a random interger number [1,9]

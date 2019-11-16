@@ -16,6 +16,6 @@
 		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
 	</target>
 	<target name="run" depends="compile">
-		<java classname="blustercritter.BlusterCritter" classpathref="classpath" fork="true"/>
+		<java classname="blustercritter.BlusterCritterRunner" classpathref="classpath" fork="true"/>
 	</target>
 </project>

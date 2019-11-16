@@ -16,6 +16,6 @@
 		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
 	</target>
 	<target name="run" depends="compile">
-		<java classname="rockhound.RockHound" classpathref="classpath" fork="true"/>
+		<java classname="rockhound.RockHoundRunner" classpathref="classpath" fork="true"/>
 	</target>
 </project>

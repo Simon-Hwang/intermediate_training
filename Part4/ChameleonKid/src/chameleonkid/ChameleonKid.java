@@ -23,7 +23,7 @@ import info.gridworld.actor.Critter;
 import info.gridworld.grid.Location;
 import info.gridworld.grid.Grid;
 import java.awt.Color;
-import java.util.List;
+import java.util.ArrayList;
 
 public class ChameleonKid extends ChameleonCritter{
 	private static final double DARKENING_FACTOR = 0.05; //darkern coefficient
@@ -39,9 +39,9 @@ public class ChameleonKid extends ChameleonCritter{
         }
         return actors;
 	}
-	public List<Location> getLocationsInDirections(int[] directions)
+	public ArrayList<Location> getLocationsInDirections(int[] directions)
     {
-        List<Location> locs = new List<Location>();
+        ArrayList<Location> locs = new ArrayList<Location>();
         Grid gr = getGrid();
         Location loc = getLocation();
     

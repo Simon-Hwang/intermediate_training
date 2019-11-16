@@ -1,10 +1,10 @@
 
 public class Helloworld{
-	private String str = "Hello";	
-	public static void main(String[] args){
-		System.out.println("Helloworld\n");
+	private String str = "HelloWorld";	
+	public  void Hello(){
+		System.out.println(str);
 	}
 	public String getStr(){
 		return str;
 	}
-
+}

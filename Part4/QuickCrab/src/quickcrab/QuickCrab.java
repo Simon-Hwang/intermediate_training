@@ -26,33 +26,38 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class QuickCrab extends CrabCritter{
+	private boolean judge(Location loc, int direction){
+		Grid<Actor> grid = getGrid();
+		if(grid.isValid(loc)){
+			Location loc2 =	loc.getAdjacentLocation(direction);
+			if(grid.isValid(loc2) && grid.get(loc) == null && grid.get(loc2) == null){
+				return true;
+			}
+		}
+		return false;
+	}
 	public ArrayList<Location> getMoveLocations() // vary from CrabCritter, choose two steps firstly, if can't choose one step far
     {
         ArrayList<Location> locs = new ArrayList<Location>();
 		Location locTmp = getLocation();
 		Location left = locTmp.getAdjacentLocation(getDirection() + Location.LEFT);
 		Location right = locTmp.getAdjacentLocation(getDirection() + Location.RIGHT);
-        Grid<Actor> grid = getGrid();
-		if(grid.isValid(left)){
-			Location left2 = left.getAdjacentLocation(getDirection() + Location.LEFT);
-			if(grid.isValid(left2) && grid.get(left) == null && grid.get(left2) == null){
-				locs.add(left2);
-			}
+        	if(judge(left, getDirection() + Location.LEFT)){
+			locs.add(left.getAdjacentLocation(getDirection() + Location.LEFT));
 		}
-		if(grid.isValid(right)){
-			Location right2 = right.getAdjacentLocation(getDirection() + Location.RIGHT);
-			if(grid.isValid(right2) && grid.get(right) == null && grid.get(right2) == null){
-				locs.add(right2);
-			}
+		if(judge(right, getDirection() + Location.RIGHT)){
+			locs.add(right.getAdjacentLocation(getDirection() + Location.RIGHT));
 		}
 		if(locs.size() != 0){
 			return locs;
 		}
 		int[] dirs = 
             { Location.LEFT, Location.RIGHT }; // if can's move one steps away
-        for (Location loc : getLocationsInDirections(dirs))
-            if (getGrid().get(loc) == null)
+        for (Location loc : getLocationsInDirections(dirs)){
+            if (getGrid().get(loc) == null){
                 locs.add(loc);
+		}	
+	}
 
         return locs;
     }

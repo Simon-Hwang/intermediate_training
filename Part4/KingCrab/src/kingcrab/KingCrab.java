@@ -21,6 +21,7 @@ package kingcrab;
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.Critter;
 import info.gridworld.grid.Location;
+import info.gridworld.actor.Rock;
 import info.gridworld.grid.Grid;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 public class KingCrab extends CrabCritter{
 	public void processActors(ArrayList<Actor> actors) // make the actors far away from one step or remove it
     {
+		Grid<Actor> grid = getGrid();
 		Location loc = getLocation();
         for (Actor a : actors)
         {

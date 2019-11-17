@@ -19,10 +19,7 @@
 package blustercritter;
 
 import info.gridworld.actor.Actor;
-import info.gridworld.actor.Critter;
 import info.gridworld.grid.Location;
-import info.gridworld.grid.Grid;
-import java.awt.Color;
 import java.util.ArrayList;
 
 public class BlusterCritter extends Critter{
@@ -37,49 +34,19 @@ public class BlusterCritter extends Critter{
 		int row = loc.getRow(), col = loc.getCol();
 		int rows = getGrid().getNumRows(), cols = getGrid().getNumCols();
 		int sRow, eRow, sCol, eCol;
-		if(row - 2 >= 0){ // decide the left edge of row
-			sRow = row - 2;
-		}else{
-			if(row - 1 >= 0){
-				sRow = row - 1;
-			}else{
-				sRow = row;	
-			}
-		}
-		if(col - 2 >= 0){ // decide the upper edge of row
-			sCol = col - 2;
-		}else{
-			if(col - 1 >= 0){
-				sCol = col - 1;
-			}else{
-				sCol = col;	
-			}
-		}
-		if(row + 2 < rows){ // decide the right edge of row
-			eRow = row + 2;
-		}else{
-			if(row + 1 < rows){
-				eRow = row + 1;
-			}else{
-				eRow = row;	
-			}
-		}
-		if(col + 2 < cols){ // decide the lowwer edge of row
-			eCol = col + 2;
-		}else{
-			if(col + 1 < cols){
-				eCol = col + 1;
-			}else{
-				eCol = col;	
-			}
-		}
+		sRow = (row - 2 >= 0) ? row -2 : (row - 1 >= 0) ? row - 1 : row;
+		eRow = (row + 2 < rows) ? row + 2: (row + 1 < rows) ? row + 1 : row;
+		sCol = (col - 2 >= 0) ? col -2 : (col - 1 >= 0) ? col - 1 : col;
+		eCol = (col + 2 < cols) ? col + 2: (col + 1 < cols) ? col + 1 : col;
+		// get actor from 5*5 rectangle
 		for(int i = sRow; i <= eRow; ++i){
-			for(int j = sCol; j <= eCol; ++j){ // get actor from 5*5 rectangle
+			for(int j = sCol; j <= eCol; ++j){ 
 				if(i == row && j == row){
 					continue;
 				}
 				Actor a = getGrid().get(new Location(i, j));
-				if (a != null && a instanceof Critter){ // record the number of critter, then compare to 
+				// record the number of critter, then compare to 
+				if (a instanceof Critter){ 
 					actors.add(a);
 				}
 			}
@@ -91,7 +58,8 @@ public class BlusterCritter extends Critter{
     {
         int n = actors.size();
 		Color color = getColor();
-        if (n >= c){ // if the actors size is zero, the kid will get darken
+	// if the actors size is zero, the kid will get darken
+        if (n >= c){ 
 			int red = (int) (color.getRed() * (1 - FACTOR));
 			int green = (int) (color.getGreen() * (1 - FACTOR));
 			int blue = (int) (color.getBlue() * (1 - FACTOR));
@@ -100,7 +68,8 @@ public class BlusterCritter extends Critter{
 			blue = blue > 0? blue :0;
 			setColor(new Color(red, green, blue));
 			return;
-		}else{//get brighter
+		}else{
+			//get brighter
 			int red = (int) (color.getRed() * (1 + FACTOR));
 			int green = (int) (color.getGreen() * (1 + FACTOR));
 			int blue = (int) (color.getBlue() * (1 + FACTOR));

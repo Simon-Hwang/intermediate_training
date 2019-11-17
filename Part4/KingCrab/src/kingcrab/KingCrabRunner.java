@@ -27,7 +27,7 @@ import info.gridworld.grid.Location;
  * This class is not tested on the AP CS A and AB exams.
  */
  
- public class Example extends Bug{
+ class Example extends Bug{
 	 public void act(){} // do nothing
  }
 public final class KingCrabRunner // copy from @CrabRunner.java

@@ -29,23 +29,27 @@ public class QuickCrab extends CrabCritter{
 	public ArrayList<Location> getMoveLocations() // vary from CrabCritter, choose two steps firstly, if can't choose one step far
     {
         ArrayList<Location> locs = new ArrayList<Location>();
-		Location left = getLocationsInDirections(Location.LEFT), right = getLocationsInDirections(Location.RIGHT);
+		Location locTmp = getLocation();
+		Location left = locTmp.getAdjacentLocation(getDirection() + Location.LEFT);
+		Location right = locTmp.getAdjacentLocation(getDirection() + Location.RIGHT);
         Grid<Actor> grid = getGrid();
 		if(grid.isValid(left)){
-			if(grid.get(left.getAdjacentLocation(getDirection() + Location.LEFT)) == null){
-				locs.add(left.getAdjacentLocation(getDirection() + Location.LEFT));
+			Location left2 = left.getAdjacentLocation(getDirection() + Location.LEFT);
+			if(grid.isValid(left2) && grid.get(left) == null && grid.get(left2) == null){
+				locs.add(left2);
 			}
 		}
 		if(grid.isValid(right)){
-			if(grid.get(right.getAdjacentLocation(getDirection() + Location.RIGHT)) == null){
-				locs.add(right.getAdjacentLocation(getDirection() + Location.RIGHT));
+			Location right2 = right.getAdjacentLocation(getDirection() + Location.RIGHT);
+			if(grid.isValid(right2) && grid.get(right) == null && grid.get(right2) == null){
+				locs.add(right2);
 			}
 		}
 		if(locs.size() != 0){
 			return locs;
 		}
-		int[] dirs =
-            { Location.LEFT, Location.RIGHT };
+		int[] dirs = 
+            { Location.LEFT, Location.RIGHT }; // if can's move one steps away
         for (Location loc : getLocationsInDirections(dirs))
             if (getGrid().get(loc) == null)
                 locs.add(loc);

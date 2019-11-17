@@ -26,9 +26,9 @@ import info.gridworld.grid.Location;
  * This class runs a world that contains crab critters. <br />
  * This class is not tested on the AP CS A and AB exams.
  */
-public final class CrabRunner // copy from @CrabRunner.java
+public final class QuickCrabRunner // copy from @CrabRunner.java
 {
-	private CrabRunner(){}
+	private QuickCrabRunner(){}
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld();

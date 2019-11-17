@@ -33,10 +33,12 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	private int cols, rows;
 	private ArrayList<LinkedList<OccupantInCol>> occupantArray;
 	public SparseBoundedGrid(int rows, int cols){
-		if (rows <= 0)
+		if (rows <= 0){
             throw new IllegalArgumentException("rows <= 0");
-        if (cols <= 0)
+	}
+        if (cols <= 0){
             throw new IllegalArgumentException("cols <= 0");
+	}
 		this.rows = rows;
 		this.cols = cols;
 		occupantArray = new ArrayList<LinkedList<OccupantInCol>>();
@@ -79,11 +81,12 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
         return theLocations;
     }
 
-    public E get(Location loc)
+    public E get(Location loc) //get the actor at the specfic location
     {
-        if (!isValid(loc))
+        if (!isValid(loc)){
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
+	}
 		//locate row
 		LinkedList<OccupantInCol> list = occupantArray.get(loc.getRow());
 		if(list.size() != 0){
@@ -97,26 +100,27 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
         return null; // unavoidable warning
     }
 
-    public E put(Location loc, E obj)
+    public E put(Location loc, E obj) //put an actor to a specific location
     {
-        if (!isValid(loc))
+        if (!isValid(loc)){
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
-        if (obj == null)
+	}
+        if (obj == null){
             throw new NullPointerException("obj == null");
-
+	}
         // Add the object to the grid.
         E oldOccupant = remove(loc);
         occupantArray.get(loc.getRow()).add(new OccupantInCol(obj, loc.getCol()));
         return oldOccupant;
     }
 
-    public E remove(Location loc)
+    public E remove(Location loc) // remove an actor from a location, if it is empty throw error
     {
-        if (!isValid(loc))
+        if (!isValid(loc)){
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
-        
+        }
         // Remove the object from the grid.
         E r = get(loc);
         if(r != null){

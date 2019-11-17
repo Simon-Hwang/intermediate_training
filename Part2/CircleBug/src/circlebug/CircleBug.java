@@ -28,13 +28,9 @@ public class CircleBug extends Bug {
 		if(steps >= 0 && steps < sideLength && canMove()) { // less, not no more than -> because step is started by zero
 			move();
 			++steps;
-		}else if(steps < 0) { // turn twice to get the tright dirction
+		}else if (steps == sideLength) { // turn twice to get the tright dirction
 			turn();
-			++steps;
-		}
-		else{
-			steps = -1;
-			turn(); // if turn one, it will be a circle and twice be a square
+			steps = 0;
 		}
 	}
 }

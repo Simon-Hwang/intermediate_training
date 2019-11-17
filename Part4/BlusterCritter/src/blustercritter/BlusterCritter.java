@@ -19,8 +19,10 @@
 package blustercritter;
 
 import info.gridworld.actor.Actor;
+import info.gridworld.actor.Critter;
 import info.gridworld.grid.Location;
 import java.util.ArrayList;
+import java.awt.Color;
 
 public class BlusterCritter extends Critter{
 	private static final double FACTOR = 0.05; //darkern coefficient

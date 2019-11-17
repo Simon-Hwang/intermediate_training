@@ -16,6 +16,6 @@
 		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
 	</target>
 	<target name="run" depends="compile">
-		<java classname="sparseboundgrid.SparseBoundedGridRunner" classpathref="classpath" fork="true"/>
+		<java classname="sparseboundedgrid.SparseBoundedGridRunner" classpathref="classpath" fork="true"/>
 	</target>
 </project>

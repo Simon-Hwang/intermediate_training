@@ -16,6 +16,6 @@
 		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
 	</target>
 	<target name="run" depends="compile">
-		<java classname="unboundgrid2.UnboundGrid2Runner" classpathref="classpath" fork="true"/>
+		<java classname="unboundgridtwo.UnboundGrid2Runner" classpathref="classpath" fork="true"/>
 	</target>
 </project>

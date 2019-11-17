@@ -14,7 +14,7 @@
  * @author Cay Horstmann
  */
  
-package unboundgrid2;
+package unboundgridtwo;
 
 import info.gridworld.grid.Grid;
 import info.gridworld.grid.AbstractGrid;
@@ -72,8 +72,9 @@ public class UnboundGrid2<E> extends AbstractGrid<E>{
             {
                 // If there's an object at this location, put it in the array.
                 Location loc = new Location(r, c);
-                if (get(loc) != null)
+                if (get(loc) != null){
                     theLocations.add(loc);
+		}
             }
         }
 
@@ -82,9 +83,10 @@ public class UnboundGrid2<E> extends AbstractGrid<E>{
 
     public E get(Location loc)
     {
-        if (!isValid(loc))
+        if (!isValid(loc)){
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
+	}
 		if(loc.getRow() >= n || loc.getCol() >= n){
 			//cause isValid do not check this situation
 			return null; 
@@ -94,11 +96,13 @@ public class UnboundGrid2<E> extends AbstractGrid<E>{
 
     public E put(Location loc, E obj)
     {
-        if (!isValid(loc))
+        if (!isValid(loc)){
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
-        if (obj == null)
+	}
+        if (obj == null){
             throw new NullPointerException("obj == null");
+	}
 		while (loc.getRow() >= n || loc.getCol() >= n){ //diate until the size is larger enough
 			dialate(); // * 2 at a time
 		}
@@ -122,10 +126,10 @@ public class UnboundGrid2<E> extends AbstractGrid<E>{
 	
     public E remove(Location loc)
     {
-        if (!isValid(loc))
+        if (!isValid(loc)){
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
-        
+        }
         // Remove the object from the grid.
 		if(loc.getRow() >= n || loc.getCol() >= n){
 			//cause isValid do not check this situation

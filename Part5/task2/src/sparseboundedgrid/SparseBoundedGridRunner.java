@@ -24,8 +24,9 @@ import info.gridworld.actor.Flower;
 /**
  * This class runs a world with additional grid choices.
  */
-public final class SparseGridRunner
+public final class SparseBoundedGridRunner
 {
+    private SparseBoundedGridRunner(){}
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld();

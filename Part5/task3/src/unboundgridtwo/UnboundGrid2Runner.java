@@ -14,7 +14,7 @@
  * @author Cay Horstmann
  */
  
-package unboundgrid2;
+package unboundgridtwo;
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.Location;
@@ -26,6 +26,7 @@ import info.gridworld.actor.Flower;
  */
 public final class UnboundGrid2Runner
 {
+    private UnboundGrid2Runner(){}
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld();

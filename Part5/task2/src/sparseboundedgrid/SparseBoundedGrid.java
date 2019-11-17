@@ -20,8 +20,8 @@ import info.gridworld.grid.Grid;
 import info.gridworld.grid.AbstractGrid;
 import info.gridworld.grid.Location;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.awt.Color;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * <code>AbstractGrid</code> contains the methods that are common to grid
@@ -32,11 +32,13 @@ import java.awt.Color;
 public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	private int cols, rows;
 	private Map<Location, E> occupantMap;
-	public SparseBoundedGrid(int rows, int cols){
-		if (rows <= 0)
-            throw new IllegalArgumentException("rows <= 0");
-        if (cols <= 0)
-            throw new IllegalArgumentException("cols <= 0");
+	public SparseBoundedGrid(int rows, int cols){ //constructor
+		if (rows <= 0){ 
+            		throw new IllegalArgumentException("rows <= 0");
+		}
+		if (cols <= 0){
+		    throw new IllegalArgumentException("cols <= 0");
+		}
 		this.rows = rows;
 		this.cols = cols;
 		occupantMap = new HashMap<Location, E>();	
@@ -53,41 +55,46 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
         return cols;
     }
 
-    public boolean isValid(Location loc)
+    public boolean isValid(Location loc)//judege wheter the location is valid
     {
         return 0 <= loc.getRow() && loc.getRow() < getNumRows()
                 && 0 <= loc.getCol() && loc.getCol() < getNumCols();
     }
 
-    public ArrayList<Location> getOccupiedLocations()
+    public ArrayList<Location> getOccupiedLocations() //get the occupied location and return it
     {
 		// same as @UnboundedGrid.java
 		ArrayList<Location> a = new ArrayList<Location>();
-        for (Location loc : occupantMap.keySet())
+        for (Location loc : occupantMap.keySet()){
             a.add(loc);
+	}
         return a;
     }
 
-    public E get(Location loc)
+    public E get(Location loc) //get the actor at the specfic location, if there are empty rerturn null
     {
-        if (loc == null)
-            throw new NullPointerException("loc == null");
+        if (loc == null){
+            throw new NullPointerException("loc == null"); // throw an error
+	}
         return occupantMap.get(loc);
     }
 
-    public E put(Location loc, E obj)
+    public E put(Location loc, E obj)//put an actor to a certain location
     {
-        if (loc == null)
+        if (loc == null){
             throw new NullPointerException("loc == null");
-        if (obj == null)
-            throw new NullPointerException("obj == null");
+	}
+        if (obj == null){
+            throw new NullPointerException("obj == null"); //throw error
+	}
         return occupantMap.put(loc, obj);
     }
 
     public E remove(Location loc)
     {
-        if (loc == null)
+        if (loc == null){
             throw new NullPointerException("loc == null");
+	}
         return occupantMap.remove(loc);
     }
 	

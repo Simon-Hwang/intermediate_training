@@ -26,7 +26,8 @@ public class MazeBugRunner
         		world.add(new Location(i,j),new Rock());
         	}        	
         }*/
-        world.add(new Location(0,0), new MazeBug());
+		//world.add(new Location(0,0), new MazeBug());
+        world.add(new Location(0,0), new MazeBug2());
         world.add(new Location(1,1),new Rock());
         world.show();
     }

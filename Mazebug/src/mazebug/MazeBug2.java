@@ -15,7 +15,7 @@ import java.util.Stack;
  * A <code>MazeBug</code> can find its way in a maze. <br />
  * The implementation of this class is testable on the AP CS A and AB exams.
  */
-public class MazeBug extends Bug {
+public class MazeBug2 extends Bug {
 	public Location next;
 	public Location last;
 	public boolean isEnd = false;
@@ -24,13 +24,14 @@ public class MazeBug extends Bug {
 	public Integer stepCount = 0;
 	private boolean exit = false;
 	private int dirIndex = 0;
+	private int[] dirs = {1,1,1,1};
 	/**
 	 * Constructs a box bug that traces a square of a given side length
 	 * 
 	 * @param length
 	 *            the side length
 	 */
-	public MazeBug() {
+	public MazeBug2() {
 		setColor(Color.GREEN);
 		last = new Location(0, 0);
 	}
@@ -59,8 +60,18 @@ public class MazeBug extends Bug {
 			return null;
 		}
 		ArrayList<Location> locs = new ArrayList<Location>();
+		int[] sortDirs = {0,1,2,3};
+		for(int i = 0; i < 3; ++i) { //sorting
+			for(int j = i+ 1; j < 4; ++j) {
+				if(dirs[i] > dirs[j]) {
+					int tmp = sortDirs[i];
+					sortDirs[i] = sortDirs[j];
+					sortDirs[j] = tmp; //sorting tehe index according to the value
+				}
+			}
+		}
 		for(int i = dirIndex; i < 4; i++){ // 从dirIndex开始， 回溯时避免重新回到上次经历过的位置-> 上次经历过NORTH 则本次dieIndex为1不会再考虑NORTH
-			Location adjLoc = loc.getAdjacentLocation(getDirection() + i * 90); //getDirection must return 0->the bug would not turn
+			Location adjLoc = loc.getAdjacentLocation(getDirection() + sortDirs[i] * 90); //getDirection must return 0->the bug would not turn
 			if(gr.isValid(adjLoc)){
 				Actor actor = gr.get(adjLoc);
 				if(actor instanceof Rock && actor.getColor().equals(Color.RED)){
@@ -88,7 +99,7 @@ public class MazeBug extends Bug {
 		}
 		ArrayList<Location> locs = getValid(getLocation());
 		if(locs.size() != 0){
-			next = locs.get(0); //return the first locations it find which the next location
+			next = locs.get(0); //still get the first location-> locs get in dirs order
 			return true;
 		}
 		return false;
@@ -105,6 +116,7 @@ public class MazeBug extends Bug {
 		Location curLoc = getLocation();
 		if(canMove()) { //move to next Location directly and leave a flower
 			path.push(next);
+			dirs[curLoc.getDirectionToward(next)/90]++; //增加
 			dirIndex = 0; // 动了 改变diIndex = 0 -》只有当回溯发生时才可萌>0 
 			Actor actor = gr.get(curLoc);
 			if(actor instanceof Rock) { // it means it meets the red Rock
@@ -116,7 +128,19 @@ public class MazeBug extends Bug {
 			path.pop(); // pop the curLoc first
 			Location lastLoc = path.peek();//the last location
 			moveTo(lastLoc);//return
-			dirIndex = lastLoc.getDirectionToward(curLoc) / 90 + 1; // If go NORTH that step, when go back, dirIndex = 1->start from EAST
+			int locIndex = lastLoc.getDirectionToward(curLoc) / 90; 
+			dirs[locIndex]--;//减少
+			int count = 0;
+			for(int i = 0; i < 4; i++) {
+				if(dirs[i] > dirs[locIndex]) {
+					++count;
+				}else if(dirs[i] == dirs[locIndex]) { //->consider the equal situation
+					if(i < locIndex) {
+						++count;
+					}
+				}
+			}
+			dirIndex = count+ 1; // If go NORTH that step, when go back, dirIndex = 1->start from EAST
 		}
 	}
 }

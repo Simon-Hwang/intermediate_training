@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ImageReder" default="run" basedir=".">
+	<property name="src" value="src/ireader"/>
+	<property name="class" value="class"/>
+	<property name="junit" value="src/test"/>
+	<property name="lib" value="lib"/>
+	<property name="report" value="report"/>
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement path="${class}"/>
+	</path>
+	<target name="init">
+		<mkdir dir="${class}"/>
+	</target>
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
+		<javac srcdir="${junit}" destdir="${class}" classpathref="classpath" includeantruntime="on"/>
+	</target>
+	<target name="junit" depends="compile">
+		<junit printsummary="true">
+				<formatter type="xml" usefile="true"/>
+			<classpath refid="classpath"/>
+			<test name="ImageProcessorTest" todir="${report}"/>		
+		</junit>
+	</target>
+	<target name="run" depends="junit">
+		<java classname="ireader.ImageReaderRunner" classpathref="classpath" fork="true"/>
+	</target>
+</project>

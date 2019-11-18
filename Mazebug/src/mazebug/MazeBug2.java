@@ -70,7 +70,7 @@ public class MazeBug2 extends Bug {
 				}
 			}
 		}
-		for(int i = dirIndex; i < 4; i++){ // 从dirIndex开始， 回溯时避免重新回到上次经历过的位置-> 上次经历过NORTH 则本次dieIndex为1不会再考虑NORTH
+		for(int i = dirIndex; i < 4; i++){ // there are 4 options 
 			Location adjLoc = loc.getAdjacentLocation(getDirection() + sortDirs[i] * 90); //getDirection must return 0->the bug would not turn
 			if(gr.isValid(adjLoc)){
 				Actor actor = gr.get(adjLoc);
@@ -116,8 +116,8 @@ public class MazeBug2 extends Bug {
 		Location curLoc = getLocation();
 		if(canMove()) { //move to next Location directly and leave a flower
 			path.push(next);
-			dirs[curLoc.getDirectionToward(next)/90]++; //增加
-			dirIndex = 0; // 动了 改变diIndex = 0 -》只有当回溯发生时才可萌>0 
+			dirs[curLoc.getDirectionToward(next)/90]++; //add
+			dirIndex = 0; // move->set 0
 			Actor actor = gr.get(curLoc);
 			if(actor instanceof Rock) { // it means it meets the red Rock
 				exit = true; // the program is to end
@@ -129,7 +129,7 @@ public class MazeBug2 extends Bug {
 			Location lastLoc = path.peek();//the last location
 			moveTo(lastLoc);//return
 			int locIndex = lastLoc.getDirectionToward(curLoc) / 90; 
-			dirs[locIndex]--;//减少
+			dirs[locIndex]--;//decrese
 			int count = 0;
 			for(int i = 0; i < 4; i++) {
 				if(dirs[i] > dirs[locIndex]) {

@@ -59,7 +59,7 @@ public class MazeBug extends Bug {
 			return null;
 		}
 		ArrayList<Location> locs = new ArrayList<Location>();
-		for(int i = dirIndex; i < 4; i++){ // 从dirIndex开始， 回溯时避免重新回到上次经历过的位置-> 上次经历过NORTH 则本次dieIndex为1不会再考虑NORTH
+		for(int i = dirIndex; i < 4; i++){ // 
 			Location adjLoc = loc.getAdjacentLocation(getDirection() + i * 90); //getDirection must return 0->the bug would not turn
 			if(gr.isValid(adjLoc)){
 				Actor actor = gr.get(adjLoc);
@@ -105,7 +105,7 @@ public class MazeBug extends Bug {
 		Location curLoc = getLocation();
 		if(canMove()) { //move to next Location directly and leave a flower
 			path.push(next);
-			dirIndex = 0; // 动了 改变diIndex = 0 -》只有当回溯发生时才可萌>0 
+			dirIndex = 0; // if move->set the Index 0
 			Actor actor = gr.get(curLoc);
 			if(actor instanceof Rock) { // it means it meets the red Rock
 				exit = true; // the program is to end

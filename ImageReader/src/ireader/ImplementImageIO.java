@@ -1,4 +1,4 @@
-package ireder;
+package ireader;
 
 import imagereader.IImageIO;
 import java.awt.Image;

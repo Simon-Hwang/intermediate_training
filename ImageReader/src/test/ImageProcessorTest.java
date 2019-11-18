@@ -1,5 +1,3 @@
-package ImageReader;
-
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
@@ -8,10 +6,11 @@ import java.io.IOException;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import ireader.*;
 
 
 public class ImageProcessorTest {
-	private String filePath = "./bmptest/";
+	private String filePath = "/home/fisco-bcos/Desktop/intermediate_training/bmptest/";
 	private ImplementImageProcessor processor = new ImplementImageProcessor();
 	private Image image1;
 	private Image image2;

@@ -51,17 +51,15 @@ public class ImplementImageIO implements IImageIO {
 	  }
 
 	  @Override
-	  public Image myWrite(Image img, String filepath) throws IOException {
+	  public Image myWrite(Image image, String filepath) throws IOException {
 		    try {
-		      File imgFile = new File(filepath);
-		      BufferedImage buffer = new BufferedImage(img.getWidth(null),img.getHeight(null), BufferedImage.TYPE_INT_RGB);
-		      buffer.getGraphics().drawImage(img, 0, 0, null); // draw into the buffer
-		      ImageIO.write(buffer, "bmp", imgFile); // write into file
-		      return img; 
-		    } catch (Exception e) {
-		    	
+				File imgFile = new File(filepath);
+				BufferedImage buffer = new BufferedImage(image.getWidth(null),image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+				buffer.getGraphics().drawImage(image, 0, 0, null); // draw into the buffer
+				ImageIO.write(buffer, "bmp", imgFile); // write into file
+				return image; 
 		    }
-		    return img;
+		    return image;
 	  }
 
 	  // java write from litter->  turn bytes to integer

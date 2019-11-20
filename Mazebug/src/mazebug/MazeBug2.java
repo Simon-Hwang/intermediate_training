@@ -16,12 +16,12 @@ import java.util.Stack;
  * The implementation of this class is testable on the AP CS A and AB exams.
  */
 public class MazeBug2 extends Bug {
-	public Location next;
-	public Location last;
-	public boolean isEnd = false;
-	public Stack<ArrayList<Location>> crossLocation = new Stack<ArrayList<Location>>();
-	public Stack<Location> path = new Stack<Location>();
-	public Integer stepCount = 0;
+	private Location next;
+	private Location last;
+	private boolean isEnd = false;
+	private Stack<ArrayList<Location>> crossLocation = new Stack<ArrayList<Location>>();
+	private Stack<Location> path = new Stack<Location>();
+	private Integer stepCount = 0;
 	private boolean exit = false;
 	private int dirIndex = 0;
 	private int[] dirs = {1,1,1,1};

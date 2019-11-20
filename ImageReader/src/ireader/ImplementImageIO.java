@@ -58,6 +58,8 @@ public class ImplementImageIO implements IImageIO {
 				buffer.getGraphics().drawImage(image, 0, 0, null); // draw into the buffer
 				ImageIO.write(buffer, "bmp", imgFile); // write into file
 				return image; 
+		    }catch(Exception e){
+
 		    }
 		    return image;
 	  }

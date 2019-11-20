@@ -17,11 +17,7 @@ import java.util.Stack;
  */
 public class MazeBug extends Bug {
 	private Location next;
-	private Location last;
-	private boolean isEnd = false;
-	private Stack<ArrayList<Location>> crossLocation = new Stack<ArrayList<Location>>();
 	private Stack<Location> path = new Stack<Location>();
-	private Integer stepCount = 0;
 	private boolean exit = false;
 	private int dirIndex = 0;
 	/**
@@ -32,7 +28,6 @@ public class MazeBug extends Bug {
 	 */
 	public MazeBug() {
 		setColor(Color.GREEN);
-		last = new Location(0, 0);
 	}
 
 	/**

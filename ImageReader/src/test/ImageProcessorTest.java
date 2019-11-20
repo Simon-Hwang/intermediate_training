@@ -21,7 +21,7 @@ public class ImageProcessorTest {
 	    image2 = ImageIO.read(new File(filePath + "2.bmp")); // constructor -> set the image
 	}
 	@Test
-	public void test1() throws IOException  { //test showChannelR
+	public void test1() throws Exception{ //test showChannelR
 		Image imageRed1 = ImageIO.read(new File(filePath + "goal/1_red_goal.bmp"));
 		Image imageRed2 = ImageIO.read(new File(filePath + "goal/2_red_goal.bmp"));
 		Image red1 = processor.showChanelR(image1);

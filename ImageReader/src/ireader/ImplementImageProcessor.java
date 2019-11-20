@@ -34,28 +34,24 @@ public class ImplementImageProcessor implements IImageProcessor {
 	  @Override
 	  public Image showChanelR(Image sourceImage) {
 	    ColorFilter redFilter = new ColorFilter(1);
-	    Image img = Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), redFilter));// turn into java.awt.image
-	    return img;
+	    return Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), redFilter));// turn into java.awt.image
 	  }
 	
 	  @Override
 	  public Image showChanelG(Image sourceImage) {
 	    ColorFilter greenFilter = new ColorFilter(2);
-	    Image img = Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), greenFilter));// turn into java.awt.image
-	    return img;
+	    return Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), greenFilter));// turn into java.awt.image
 	  }
 	
 	  @Override
 	  public Image showChanelB(Image sourceImage) {
 	    ColorFilter blueFilter = new ColorFilter(3);
-	    Image img = Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), blueFilter));// turn into java.awt.image
-	    return img;
+	    return Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), blueFilter));// turn into java.awt.image
 	  }
 	
 	  @Override
 	  public Image showGray(Image sourceImage) {
 	    ColorFilter grayFilter = new ColorFilter(0);
-	    Image img = Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), grayFilter)); // turn into java.awt.image
-	    return img;
+	    return Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(sourceImage.getSource(), grayFilter)); // turn into java.awt.image
 	  }
 }
